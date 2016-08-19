@@ -1,5 +1,6 @@
 import React from 'react';
 import { Grid, Jumbotron } from 'react-bootstrap';
+import DropzoneSpot from 'components/dropzone_spot';
 
 export default class Home extends React.Component {
   render() {
@@ -11,6 +12,7 @@ export default class Home extends React.Component {
             Ma app ma rools
           </p>
         </Jumbotron>
+        <DropzoneSpot/>
       </Grid>
     );
   }

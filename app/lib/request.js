@@ -4,7 +4,7 @@ import qs from 'qs';
 import deepAssign from 'deep-assign';
 import { pickBy } from 'lodash';
 
-function filteredParams(params) {
+export function filteredParams(params) {
   return qs.stringify(pickBy(params, item => !!item));
 }
 
