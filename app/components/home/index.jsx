@@ -6,12 +6,9 @@ export default class Home extends React.Component {
     return (
       <Grid>
         <Jumbotron>
-          <h1>React-base</h1>
+          <h1>App</h1>
           <p>
-            Kick-start your new web application based on React and Flux technologies.
-            <br/>
-            It also includes Webpack, React hot loader, PostCSS,
-            JSON-server tools for even more rapid development.
+            Ma app ma rools
           </p>
         </Jumbotron>
       </Grid>

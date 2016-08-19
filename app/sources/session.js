@@ -2,7 +2,7 @@ import config from 'config';
 import { request } from 'lib/request';
 
 export default class SessionSource {
-  static urlRoot = `${config.apiPath}/session`
+  static urlRoot = `${config.apiPath}/users/sign_in`
 
   static create(user) {
     return request(this.urlRoot, {
@@ -13,8 +13,6 @@ export default class SessionSource {
   }
 
   static delete(user) {
-    return request(`${this.urlRoot}/${user.id}`, {
-      method: 'DELETE'
-    });
+    console.log('signed out', user);
   }
 }

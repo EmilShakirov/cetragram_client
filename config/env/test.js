@@ -7,11 +7,6 @@ module.exports = {
     tokenKey: 'authentication_token',
     emailKey: 'email'
   },
-  api: {
-    target: 'http://localhost:8001',
-    path: '/v1',
-    port: 8001
-  },
   test: {
     port: 9999
   }
