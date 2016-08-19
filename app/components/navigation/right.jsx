@@ -31,9 +31,6 @@ export default class NavigationRight extends React.Component {
     if (session.loggedIn()) {
       return (
         <Nav pullRight>
-          <NavItem>
-            Dummy
-          </NavItem>
           <NavItem onClick={ ::this.signOut }>
             Sign out
           </NavItem>

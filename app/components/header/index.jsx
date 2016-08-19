@@ -7,7 +7,7 @@ export default class Header extends React.Component {
   render() {
     const links = [
       { title: 'Home', route: '/' },
-      { title: 'About', route: '/about' }
+      { title: 'All Images', route: '/images' }
     ];
 
     return (
