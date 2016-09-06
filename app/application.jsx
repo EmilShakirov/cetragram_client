@@ -4,7 +4,7 @@ import { render } from 'react-dom';
 import { Router, Route, Redirect, browserHistory } from 'react-router';
 import Application from 'components/application';
 import Main from 'components/main';
-import ImageList from 'components/image/list';
+import ImageLayout from 'components/image/layout';
 import { requireAuth } from 'helpers/routes';
 
 render((
@@ -13,7 +13,7 @@ render((
       <Route path="/" component={ Main }/>
       <Route
         path="images"
-        component={ ImageList }
+        component={ ImageLayout }
         onEnter={ requireAuth }
       />
       <Redirect from="*" to="/"/>

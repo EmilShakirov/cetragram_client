@@ -1,6 +1,7 @@
 import React from 'react';
 import connectToStores from 'alt-utils/lib/connectToStores';
 import Home from 'components/home';
+import VisitorsHome from 'components/visitors_home';
 import session from 'services/session';
 
 @connectToStores
@@ -14,6 +15,6 @@ export default class Main extends React.Component {
   }
 
   render() {
-    return <Home/>;
+    return session.loggedIn() ? <Home/> : <VisitorsHome/>;
   }
 }

@@ -1,17 +1,29 @@
 import React, { PropTypes } from 'react';
 import Dropzone from 'react-dropzone';
-import ImageActions from 'actions/image';
+import ImagesActions from 'actions/images';
+import styles from './styles';
 
 export default class DropzoneSpot extends React.Component {
-  onDrop(files) {
-    ImageActions.create(files[0]);
+  static propTypes = {
+    onDrop: PropTypes.func
+  }
+
+  static defaultProps = {
+    onDrop() {}
+  }
+
+  handleFileDrop = (files) => {
+    this.props.onDrop(files);
   }
 
   render() {
     return (
       <div>
-        <Dropzone onDrop={ ::this.onDrop }>
-          <div>Try dropping some files here, or click to select files to upload.</div>
+        <Dropzone
+          className={ styles.dropzone }
+          onDrop={ this.handleFileDrop }
+        >
+          <div>DROP!</div>
         </Dropzone>
       </div>
     );

@@ -14,7 +14,7 @@ export default class Header extends React.Component {
       <Navbar>
         <Navbar.Header>
           <Navbar.Brand>
-            React-base
+            cetragram
           </Navbar.Brand>
         </Navbar.Header>
         <NavigationLeft items={ links }/>

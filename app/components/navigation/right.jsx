@@ -1,7 +1,6 @@
 import React from 'react';
 import connectToStores from 'alt-utils/lib/connectToStores';
 import { Nav, NavItem } from 'react-bootstrap';
-import ApplicationActions from 'actions/application';
 import SessionActions from 'actions/session';
 import session from 'services/session';
 
@@ -13,14 +12,6 @@ export default class NavigationRight extends React.Component {
 
   static getPropsFromStores(props) {
     return session.store().getState();
-  }
-
-  signIn() {
-    ApplicationActions.openModal({ name: 'signIn' });
-  }
-
-  signUp() {
-    ApplicationActions.openModal({ name: 'signUp' });
   }
 
   signOut() {
@@ -38,15 +29,6 @@ export default class NavigationRight extends React.Component {
       );
     }
 
-    return (
-      <Nav pullRight>
-        <NavItem onClick={ ::this.signUp }>
-          Sign up
-        </NavItem>
-        <NavItem onClick={ ::this.signIn }>
-          Sign in
-        </NavItem>
-      </Nav>
-    );
+    return (<div></div>);
   }
 }

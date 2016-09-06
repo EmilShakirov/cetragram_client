@@ -1,0 +1,11 @@
+.dropzone {
+  border-radius: 20px;
+  border: 5px dotted #fff;
+  color: #fff;
+  background-color: blue;
+  font: bold 24px/200px arial;
+  height: 210px;
+  margin: 30px auto;
+  position: relative;
+  text-align: center;
+}

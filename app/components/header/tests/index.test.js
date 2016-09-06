@@ -18,6 +18,6 @@ describe('Header', () => {
   it('renders text inside Navbar.Brand component', () => {
     const headerComponent = mount(<Header/>);
 
-    expect(headerComponent.find(Navbar.Brand).text()).toContain('React-base');
+    expect(headerComponent.find(Navbar.Brand).text()).toContain('cetragram');
   });
 });

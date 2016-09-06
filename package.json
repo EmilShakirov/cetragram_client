@@ -1,12 +1,12 @@
 {
-  "name": "react-base",
+  "name": "cetragram",
   "version": "0.1.0",
   "authors": [
     "Emil Shakirov <emil.shakirov@flatstack.com>"
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com:fs/react-base.git"
+    "url": "git//github.com:EmilShakirov/cetragram_client.git"
   },
   "scripts": {
     "stylelint": "stylelint ./app/**/*.css --config ./config/stylelint.js",

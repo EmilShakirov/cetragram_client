@@ -1,7 +1,21 @@
 import React, {PropTypes} from 'react';
+import {
+  Row
+} from 'react-bootstrap';
+import ImageItem from './image_item';
 
-export default class Imagelist extends React.Component {
+export default class ImageList extends React.Component {
+  renderItems = () => {
+    return this.props.images.map(image => <ImageItem key={ image.id } image={ image }/>);
+  }
+
   render() {
-    return (<div>Imagelist</div>);
+    return (
+      <div className="container">
+        <Row>
+          { this.renderItems() }
+        </Row>
+      </div>
+    );
   }
 }
