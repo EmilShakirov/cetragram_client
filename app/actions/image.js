@@ -4,6 +4,12 @@ import imagesSource from 'sources/images';
 
 @createActions(Alt)
 export default class ImageActions {
+  getImage(imageId) {
+    return (dispatch) => {
+      imagesSource.getImage(imageId).then(result => dispatch(result));
+    };
+  }
+
   setCaption(caption) {
     return caption;
   }

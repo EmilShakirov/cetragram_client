@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import Dropzone from 'react-dropzone';
-import ImagesActions from 'actions/images';
 import styles from './styles';
 
 export default class DropzoneSpot extends React.Component {
@@ -20,10 +19,11 @@ export default class DropzoneSpot extends React.Component {
     return (
       <div>
         <Dropzone
+          accept="image/*"
           className={ styles.dropzone }
           onDrop={ this.handleFileDrop }
         >
-          <div>DROP!</div>
+          <div>Drop file here.</div>
         </Dropzone>
       </div>
     );

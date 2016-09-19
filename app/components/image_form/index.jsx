@@ -5,7 +5,8 @@ import {
   Col,
   FormControl,
   FormGroup,
-  Thumbnail
+  Thumbnail,
+  Well
 } from 'react-bootstrap';
 import DropzoneSpot from 'components/dropzone_spot';
 import ImageActions from 'actions/image';
@@ -58,27 +59,31 @@ export default class ImageForm extends React.Component {
 
   render() {
     return (
-      <Col xs={ 6 } xsOffset={ 3 } >
-        { this.renderDropzone() }
+        <Col xs={ 6 } xsOffset={ 3 } >
+          <Well>
+            { this.renderDropzone() }
 
-        <form onSubmit={ this.createImage }>
-          <FormGroup
-            controlId="caption"
-          >
-            <FormControl
-              componentClass="textarea"
-              placeholder="Enter your caption"
-              onChange={ this.setCaption }
-            />
-          </FormGroup>
-          <Button
-            bsSize="large"
-            bsStyle="primary"
-          >
-            Upload
-          </Button>
-        </form>
-      </Col>
+            <form onSubmit={ this.createImage }>
+              <FormGroup
+                controlId="caption"
+              >
+                <FormControl
+                  componentClass="textarea"
+                  placeholder="Enter your caption"
+                  onChange={ this.setCaption }
+                />
+              </FormGroup>
+              <Button
+                bsSize="large"
+                bsStyle="primary"
+                type="submit"
+              >
+                Upload
+              </Button>
+            </form>
+          </Well>
+        </Col>
+
   );
   }
 }

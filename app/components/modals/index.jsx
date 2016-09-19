@@ -3,8 +3,10 @@ import connectToStores from 'alt-utils/lib/connectToStores';
 import ApplicationStore from 'stores/application';
 import SigninModal from 'components/signinModal';
 import SignupModal from 'components/signupModal';
+import ImageModal from 'components/image_modal';
 
 const MODALS = {
+  image: ImageModal,
   signIn: SigninModal,
   signUp: SignupModal
 };

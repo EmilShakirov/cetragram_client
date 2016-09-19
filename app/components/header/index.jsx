@@ -6,7 +6,7 @@ import NavigationRight from 'components/navigation/right';
 export default class Header extends React.Component {
   render() {
     const links = [
-      { title: 'Home', route: '/' },
+      { title: 'Upload Image', route: '/' },
       { title: 'All Images', route: '/images' }
     ];
 

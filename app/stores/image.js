@@ -15,9 +15,14 @@ export default class ImageStore {
     this.reset();
 
     this.bindListeners({
+      getImage: ImageActions.GET_IMAGE,
       setCaption: ImageActions.SET_CAPTION,
       setFile: ImageActions.SET_FILE
     });
+  }
+
+  getImage(image) {
+    this.image = image;
   }
 
   setCaption(caption) {

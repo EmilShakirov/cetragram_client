@@ -26,4 +26,11 @@ export default class ImagesSource {
     })
     .then(result => result.json());
   }
+
+  static getImage(imageId) {
+    return requestAuth(`${this.urlRoot}/${imageId}`, {
+      method: 'GET'
+    })
+    .then(result => result.json());
+  }
 }

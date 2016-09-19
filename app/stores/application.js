@@ -10,6 +10,7 @@ export default class ApplicationStore {
     this.isModalOpen = false;
     this.modalName = '';
     this.modalOptions = {};
+    this.params = {};
 
     this.bindListeners({
       openModal: ApplicationActions.OPEN_MODAL,
@@ -17,14 +18,16 @@ export default class ApplicationStore {
     });
   }
 
-  openModal({ name, ...rest }) {
+  openModal({ name, params, ...rest }) {
     this.isModalOpen = true;
     this.modalName = name;
+    this.params = params;
     this.modalOptions = { ...rest };
   }
 
   closeModal() {
     this.isModalOpen = false;
     this.modalName = '';
+    this.params = {};
   }
 }

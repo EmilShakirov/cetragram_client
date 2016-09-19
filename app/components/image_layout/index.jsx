@@ -6,7 +6,7 @@ import {
   Col
 } from 'react-bootstrap';
 import ImagesActions from 'actions/images';
-import ImageList from 'components/image/list';
+import ImageList from './list';
 import ImagesStore from 'stores/images';
 
 @connectToStores
@@ -42,6 +42,7 @@ export default class ImageLayout extends React.Component {
   }
 
   render() {
+    const { isModalOpen } = this.props;
     return (
       <Grid>
         <Row className="show-grid">
