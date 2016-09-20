@@ -60,16 +60,14 @@ export default class ImageModal extends React.Component {
 
     return (
       <Modal
-        bsSize="small"
+        bsSize="large"
         show={ isModalOpen }
         onHide={ ApplicationActions.closeModal }
       >
-        <Modal.Header closeButton>
-          <h3 className="modal-title">{ caption }</h3>
-        </Modal.Header>
-
           <Modal.Body>
             <Thumbnail src={ link }/>
+
+            <p className="text-center">{ caption }</p>
           </Modal.Body>
 
           <Modal.Footer>
