@@ -28,11 +28,11 @@ export default class SigninModal extends React.Component {
     };
   }
 
-  setValue(event) {
+  setValue = (event) => {
     SigninActions.setValue(event.target.name, event.target.value);
   }
 
-  signIn(event) {
+  signIn = (event) => {
     event.preventDefault();
 
     if (this.isValid()) {
@@ -41,13 +41,13 @@ export default class SigninModal extends React.Component {
     }
   }
 
-  isValid() {
+  isValid = () => {
     const user = this.props.user;
 
     return user.email.length >= 6 && user.password.length >= 6;
   }
 
-  validationState(value) {
+  validationState = (value) => {
     return value.length >= 6 ? 'success' : 'error';
   }
 
@@ -62,28 +62,28 @@ export default class SigninModal extends React.Component {
           <h3 className="modal-title">Sign In</h3>
         </Modal.Header>
 
-        <form onSubmit={ ::this.signIn }>
+        <form onSubmit={ this.signIn }>
           <Modal.Body>
             <FormGroup
               controlId="email"
-              validationState={ ::this.validationState(this.props.user.email) }
+              validationState={ this.validationState(this.props.user.email) }
             >
               <ControlLabel>Email</ControlLabel>
               <FormControl
                 type="text"
                 name="email"
-                onChange={ ::this.setValue }
+                onChange={ this.setValue }
               />
             </FormGroup>
             <FormGroup
               controlId="password"
-              validationState={ ::this.validationState(this.props.user.password) }
+              validationState={ this.validationState(this.props.user.password) }
             >
               <ControlLabel>Password</ControlLabel>
               <FormControl
                 autoComplete="off"
                 name="password"
-                onChange={ ::this.setValue }
+                onChange={ this.setValue }
                 type="text"
               />
             </FormGroup>

@@ -19,7 +19,10 @@ export default class ImageModal extends React.Component {
       caption: PropTypes.string,
       link: PropTypes.string
     }),
-    isModalOpen: PropTypes.bool
+    isModalOpen: PropTypes.bool,
+    params: PropTypes.shape({
+      id: PropTypes.id
+    })
   }
 
   static getStores(props) {

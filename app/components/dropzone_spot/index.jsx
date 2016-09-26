@@ -23,7 +23,9 @@ export default class DropzoneSpot extends React.Component {
           className={ styles.dropzone }
           onDrop={ this.handleFileDrop }
         >
-          <div>Drop file here.</div>
+          <div className={ styles.dropzoneText }>
+            Drop file here.
+          </div>
         </Dropzone>
       </div>
     );

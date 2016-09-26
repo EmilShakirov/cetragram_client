@@ -1,3 +1,16 @@
-.imagePanel {
-  height: 270px;
+.caption {
+  min-height: 20px;
+  min-width: 1px;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.image {
+  max-height: 200px;
+}
+
+.like {
+  padding-bottom: 5px;
 }

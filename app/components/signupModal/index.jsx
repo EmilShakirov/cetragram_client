@@ -29,11 +29,11 @@ export default class SignupModal extends React.Component {
     };
   }
 
-  setValue(event) {
+  setValue = (event) => {
     SignupActions.setValue(event.target.name, event.target.value);
   }
 
-  signUp(event) {
+  signUp = (event) => {
     event.preventDefault();
 
     if (this.isValid()) {
@@ -42,7 +42,7 @@ export default class SignupModal extends React.Component {
     }
   }
 
-  isValid() {
+  isValid = () => {
     const user = this.props.user;
 
     return (
@@ -54,19 +54,19 @@ export default class SignupModal extends React.Component {
     );
   }
 
-  isValidPassword() {
+  isValidPassword = () => {
     return this.props.user.password === this.props.user.passwordConfirmation;
   }
 
-  validationState(value) {
+  validationState = (value) => {
     return value.length >= 6 ? 'success' : 'error';
   }
 
-  nameValidationState(value) {
+  nameValidationState = (value) => {
     return value.trim().length ? 'success' : 'error';
   }
 
-  passwordValidationState(value) {
+  passwordValidationState = (value) => {
     return (this.isValidPassword() && value.length >= 6) ? 'success' : 'error';
   }
 
@@ -81,7 +81,7 @@ export default class SignupModal extends React.Component {
           <h3 className="modal-title">Sign Up</h3>
         </Modal.Header>
 
-        <form onSubmit={ ::this.signUp }>
+        <form onSubmit={ this.signUp }>
           <Modal.Body>
             <FormGroup
               controlId="name"
@@ -91,7 +91,7 @@ export default class SignupModal extends React.Component {
               <FormControl
                 type="text"
                 name="name"
-                onChange={ ::this.setValue }
+                onChange={ this.setValue }
               />
             </FormGroup>
             <FormGroup
@@ -102,7 +102,7 @@ export default class SignupModal extends React.Component {
               <FormControl
                 type="text"
                 name="email"
-                onChange={ ::this.setValue }
+                onChange={ this.setValue }
               />
             </FormGroup>
             <FormGroup
@@ -113,18 +113,18 @@ export default class SignupModal extends React.Component {
               <FormControl
                 type="password"
                 name="password"
-                onChange={ ::this.setValue }
+                onChange={ this.setValue }
               />
             </FormGroup>
             <FormGroup
               controlId="passwordConfirmation"
-              validationState={ ::this.passwordValidationState(this.props.user.passwordConfirmation) }
+              validationState={ this.passwordValidationState(this.props.user.passwordConfirmation) }
             >
               <ControlLabel>Password Confirmation</ControlLabel>
               <FormControl
                 type="password"
                 name="passwordConfirmation"
-                onChange={ ::this.setValue }
+                onChange={ this.setValue }
               />
             </FormGroup>
           </Modal.Body>

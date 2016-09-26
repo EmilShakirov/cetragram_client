@@ -30,17 +30,20 @@ export default class ImageItem extends React.Component {
         xs= { 6 }
         className="thumb"
       >
-        <Panel className={ styles.imagePanel }>
+        <Thumbnail className="clearfix">
           <Link to={ paths.image(imageId) }>
-            <Image src={ link } thumbnail/>
+            <Image
+              src={ link }
+              className={ styles.image }
+              rounded
+            />
           </Link>
-            <Col xs={ 12 }>
-              <div className="pull-right">
-                <Like imageId={ imageId }/>
-              </div>
-            </Col>
-          <Col xs={ 12 }>{ caption }</Col>
-        </Panel>
+          <br/>
+          <p className={ styles.caption }>{ caption }</p>
+          <Col xs={ 3 } className={ `pull-right ${styles.like}` }>
+            <Like imageId={ imageId }/>
+          </Col>
+        </Thumbnail>
       </Col>
     );
   }

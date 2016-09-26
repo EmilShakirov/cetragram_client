@@ -26,6 +26,6 @@ export default class LikesStore {
   }
 
   destroy(like) {
-    this.likes.splice(this.likes.findIndex(item => item === like.id), 1);
+    this.likes = _.reject(this.likes, like);
   }
 }

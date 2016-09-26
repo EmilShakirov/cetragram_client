@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Button, Col, Grid, Row, Well } from 'react-bootstrap';
 import ApplicationActions from 'actions/application';
+import styles from './styles';
 
-export default class VisitorsHome extends React.Component {
-  signIn() {
+export default class VisitorsHome extends Component {
+  signIn = () => {
     ApplicationActions.openModal({ name: 'signIn' });
   }
 
-  signUp() {
+  signUp = () => {
     ApplicationActions.openModal({ name: 'signUp' });
   }
 
@@ -15,30 +16,27 @@ export default class VisitorsHome extends React.Component {
     return (
       <Grid>
         <Row>
-          <Col xs={ 8 } xsOffset={ 3 }>
-            <Well>
-              You take the blue pill, the story ends.
-              You wake up in your bed and believe whatever you want to believe.
-              You take the red pill, you stay in Wonderland, and I show you how deep the rabbit hole goes.
+          <Col
+            xs={ 8 }
+            xsOffset={ 2 }
+            className={ styles.signButtons }
+          >
+            <Well className="text-center">
+              <Button
+                bsSize= "large"
+                bsStyle="primary"
+                onClick={ this.signIn }
+              >
+                S I G N I N
+              </Button>&nbsp;
+              <Button
+                bsSize= "large"
+                bsStyle="danger"
+                onClick={ this.signUp }
+              >
+                S I G N U P
+              </Button>
             </Well>
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={ 6 } xsOffset={ 5 }>
-            <Button
-              bsSize= "large"
-              bsStyle="primary"
-              onClick={ ::this.signIn }
-            >
-              IN
-            </Button>&nbsp;
-            <Button
-              bsSize= "large"
-              bsStyle="danger"
-              onClick={ ::this.signUp }
-            >
-              UP
-            </Button>
           </Col>
         </Row>
       </Grid>

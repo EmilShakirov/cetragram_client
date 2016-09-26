@@ -1,11 +1,18 @@
 .dropzone {
-  border-radius: 20px;
-  border: 5px dotted #fff;
-  color: #fff;
   background-color: #337ab7;
+  background-repeat: no-repeat;
+  background-image: url("https://unsplash.it/400/300?blur&random");
+  background-size: cover;
+  border-radius: 20px;
+  border: 5px #fff;
+  color: #fff;
   font: bold 24px/200px arial;
-  height: 210px;
+  height: 450px;
   margin: 30px auto;
   position: relative;
   text-align: center;
+}
+
+.dropzoneText {
+  padding-top: 100px;
 }
