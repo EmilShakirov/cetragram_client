@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import connectToStores from 'alt-utils/lib/connectToStores';
 import {
   Grid,
@@ -12,15 +12,16 @@ import ImagesStore from 'stores/images';
 @connectToStores
 export default class ImageLayout extends React.Component {
   static propTypes = {
-    images: React.PropTypes.arrayOf(
-      React.PropTypes.shape({
-        id: React.PropTypes.id,
-        caption: React.PropTypes.string,
-        link: React.PropTypes.string,
-        name: React.PropTypes.string,
-        user_id: React.PropTypes.id
+    images: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.id,
+        caption: PropTypes.string,
+        link: PropTypes.string,
+        name: PropTypes.string,
+        user_id: PropTypes.id
       })
-    )
+    ),
+    isModalOpen: PropTypes.bool
   }
 
   static getStores(props) {
@@ -28,7 +29,9 @@ export default class ImageLayout extends React.Component {
   }
 
   static getPropsFromStores(props) {
-    return ImagesStore.getState();
+    return {
+      ...ImagesStore.getState()
+    };
   }
 
   componentDidMount() {

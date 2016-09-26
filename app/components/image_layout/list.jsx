@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 import {
   Row
 } from 'react-bootstrap';
-import ImageThumb from './image_thumb';
+import ImageItem from 'components/image_item';
 
 export default class ImageList extends React.Component {
   static propTypes = {
@@ -17,7 +17,7 @@ export default class ImageList extends React.Component {
 
   renderItems = () => {
     return this.props.images.map(
-      (image) => <ImageThumb key={ image.id } image={ image }/>
+      (image) => <ImageItem key={ image.id } image={ image }/>
     );
   }
 
@@ -25,6 +25,7 @@ export default class ImageList extends React.Component {
     return (
       <div className="container">
         <Row>
+
           { this.renderItems() }
         </Row>
       </div>
