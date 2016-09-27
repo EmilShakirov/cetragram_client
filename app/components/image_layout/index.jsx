@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import connectToStores from 'alt-utils/lib/connectToStores';
 import {
   Grid,
@@ -10,7 +10,7 @@ import ImageList from './list';
 import ImagesStore from 'stores/images';
 
 @connectToStores
-export default class ImageLayout extends React.Component {
+export default class ImageLayout extends Component {
   static propTypes = {
     images: PropTypes.arrayOf(
       PropTypes.shape({

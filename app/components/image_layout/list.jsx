@@ -4,7 +4,7 @@ import {
 } from 'react-bootstrap';
 import ImageItem from 'components/image_item';
 
-export default class ImageList extends React.Component {
+export default class ImageList extends Component {
   static propTypes = {
     images: PropTypes.arrayOf(
       PropTypes.shape({

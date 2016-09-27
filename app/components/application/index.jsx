@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import session from 'services/session';
 import Header from 'components/header';
 import Modals from 'components/modals';
 import Footer from 'components/footer';
 import styles from './styles';
 
-export default class Application extends React.Component {
+export default class Application extends Component {
   renderHeader() {
     if (session.loggedIn()) {
       return <Header/>;

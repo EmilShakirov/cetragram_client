@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import connectToStores from 'alt-utils/lib/connectToStores';
 import { Badge, Glyphicon } from 'react-bootstrap';
 import session from 'services/session';
@@ -7,7 +7,7 @@ import LikesActions from 'actions/likes';
 import LikesStore from 'stores/likes';
 
 @connectToStores
-export default class Like extends React.Component {
+export default class Like extends Component {
   static propTypes = {
     imageId: PropTypes.number,
     likes: PropTypes.arrayOf(

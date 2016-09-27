@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
   Col,
   Image,
@@ -11,9 +11,9 @@ import { paths } from 'helpers/routes';
 import Like from 'components/like';
 import styles from './styles';
 
-export default class ImageItem extends React.Component {
+export default class ImageItem extends Component {
   static propTypes = {
-    image: React.PropTypes.shape({
+    image: PropTypes.shape({
       id: PropTypes.id,
       caption: PropTypes.string,
       link: PropTypes.string

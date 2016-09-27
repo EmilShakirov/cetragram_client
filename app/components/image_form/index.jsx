@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 import connectToStores from 'alt-utils/lib/connectToStores';
 import {
   Button,
@@ -14,9 +14,9 @@ import ImagesActions from 'actions/images';
 import ImageStore from 'stores/image';
 
 @connectToStores
-export default class ImageForm extends React.Component {
+export default class ImageForm extends Component {
   static propTypes = {
-    image: React.PropTypes.shape({
+    image: PropTypes.shape({
       id: PropTypes.id,
       caption: PropTypes.string,
       file: PropTypes.object

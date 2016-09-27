@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import connectToStores from 'alt-utils/lib/connectToStores';
 import { Modal, Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import SessionActions from 'actions/session';
@@ -8,12 +8,12 @@ import ApplicationStore from 'stores/application';
 import SigninStore from 'stores/signin';
 
 @connectToStores
-export default class SigninModal extends React.Component {
+export default class SigninModal extends Component {
   static propTypes = {
-    isModalOpen: React.PropTypes.bool,
-    user: React.PropTypes.shape({
-      email: React.PropTypes.string,
-      password: React.PropTypes.string
+    isModalOpen: PropTypes.bool,
+    user: PropTypes.shape({
+      email: PropTypes.string,
+      password: PropTypes.string
     })
   }
 

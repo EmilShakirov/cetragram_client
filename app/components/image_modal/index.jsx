@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import connectToStores from 'alt-utils/lib/connectToStores';
 import {
   Modal,
@@ -11,14 +11,17 @@ import ImageActions from 'actions/image';
 import ImagesStore from 'stores/images';
 import ImageStore from 'stores/image';
 
+const imageShape = PropTypes.shape({
+  id: PropTypes.id,
+  caption: PropTypes.string,
+  link: PropTypes.string
+});
+
 @connectToStores
-export default class ImageModal extends React.Component {
+export default class ImageModal extends Component {
   static propTypes = {
-    image: PropTypes.shape({
-      id: PropTypes.id,
-      caption: PropTypes.string,
-      link: PropTypes.string
-    }),
+    image: imageShape,
+    images: PropTypes.arrayOf(imageShape),
     isModalOpen: PropTypes.bool,
     params: PropTypes.shape({
       id: PropTypes.id
@@ -68,13 +71,10 @@ export default class ImageModal extends React.Component {
         onHide={ ApplicationActions.closeModal }
       >
           <Modal.Body>
-            <Thumbnail src={ link }/>
+            <Thumbnail src={ link } rounded/>
 
             <p className="text-center">{ caption }</p>
           </Modal.Body>
-
-          <Modal.Footer>
-          </Modal.Footer>
       </Modal>
     );
   }

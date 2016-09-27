@@ -1,8 +1,8 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import Dropzone from 'react-dropzone';
 import styles from './styles';
 
-export default class DropzoneSpot extends React.Component {
+export default class DropzoneSpot extends Component {
   static propTypes = {
     onDrop: PropTypes.func
   }
