@@ -1,6 +1,7 @@
 import config from 'config';
 import requestAuth from 'lib/request-auth';
 import requestFileUpload from 'lib/request-file-upload';
+import responseNormalizer from 'lib/response-normalizer';
 
 export default class ImagesSource {
   static urlRoot = `${config.apiPath}/images`;
@@ -24,7 +25,9 @@ export default class ImagesSource {
     return requestAuth(this.urlRoot, {
       method: 'GET'
     })
-    .then(result => result.json());
+    .then(result =>
+      result.json().then(json => responseNormalizer(json.images, 'images'))
+    );
   }
 
   static getImage(imageId) {

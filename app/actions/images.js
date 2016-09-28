@@ -2,19 +2,14 @@ import Alt from 'alt_flux';
 import { createActions } from 'alt-utils/lib/decorators';
 import { browserHistory } from 'react-router';
 import imagesSource from 'sources/images';
-import likesActions from 'actions/likes';
-
-const IMAGES_PATH = "/images";
+import { paths } from 'helpers/routes';
 
 @createActions(Alt)
 export default class ImagesActions {
   get(images) {
     return (dispatch) => {
       if (!images.length) {
-        imagesSource.get().then((result) => {
-          dispatch(result.images);
-          likesActions.get(this._imagesLikes(result.images));
-        });
+        imagesSource.get().then(result => dispatch(result));
       } else {
         dispatch(images);
       }
@@ -24,19 +19,10 @@ export default class ImagesActions {
   create(image) {
     return (dispatch) => {
       imagesSource.create(image).then(result => {
-        dispatch(result);
+        dispatch(result.image);
 
-        browserHistory.push(IMAGES_PATH);
+        browserHistory.push(paths.images());
       });
     };
-  }
-
-  // TODO: This should moved or refactored
-  _imagesLikes(images) {
-    return _
-      .chain(images)
-      .map(image => image.likes)
-      .flatten()
-      .value();
   }
 }

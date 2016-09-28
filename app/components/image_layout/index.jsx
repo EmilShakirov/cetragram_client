@@ -1,26 +1,19 @@
 import React, { Component, PropTypes } from 'react';
 import connectToStores from 'alt-utils/lib/connectToStores';
 import {
+  Col,
   Grid,
-  Row,
-  Col
+  Row
 } from 'react-bootstrap';
-import ImagesActions from 'actions/images';
 import ImageList from './list';
+import imagePropTypes from 'prop_types/image';
+import ImagesActions from 'actions/images';
 import ImagesStore from 'stores/images';
 
 @connectToStores
 export default class ImageLayout extends Component {
   static propTypes = {
-    images: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.id,
-        caption: PropTypes.string,
-        link: PropTypes.string,
-        name: PropTypes.string,
-        user_id: PropTypes.id
-      })
-    ),
+    images: PropTypes.objectOf(PropTypes.shape(imagePropTypes)),
     isModalOpen: PropTypes.bool
   }
 

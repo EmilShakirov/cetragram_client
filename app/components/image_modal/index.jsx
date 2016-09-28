@@ -2,26 +2,20 @@ import React, { Component, PropTypes } from 'react';
 import connectToStores from 'alt-utils/lib/connectToStores';
 import {
   Modal,
-  Button,
   Thumbnail
 } from 'react-bootstrap';
 import ApplicationActions from 'actions/application';
 import ApplicationStore from 'stores/application';
 import ImageActions from 'actions/image';
+import imagePropTypes from 'prop_types/image';
 import ImagesStore from 'stores/images';
 import ImageStore from 'stores/image';
-
-const imageShape = PropTypes.shape({
-  id: PropTypes.id,
-  caption: PropTypes.string,
-  link: PropTypes.string
-});
 
 @connectToStores
 export default class ImageModal extends Component {
   static propTypes = {
-    image: imageShape,
-    images: PropTypes.arrayOf(imageShape),
+    image: PropTypes.shape(imagePropTypes),
+    images: PropTypes.arrayOf(PropTypes.shape(imagePropTypes)),
     isModalOpen: PropTypes.bool,
     params: PropTypes.shape({
       id: PropTypes.id
@@ -66,12 +60,11 @@ export default class ImageModal extends Component {
 
     return (
       <Modal
-        bsSize="large"
         show={ isModalOpen }
         onHide={ ApplicationActions.closeModal }
       >
           <Modal.Body>
-            <Thumbnail src={ link } rounded/>
+            <Thumbnail src={ link }/>
 
             <p className="text-center">{ caption }</p>
           </Modal.Body>

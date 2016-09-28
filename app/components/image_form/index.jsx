@@ -10,17 +10,14 @@ import {
 } from 'react-bootstrap';
 import DropzoneSpot from 'components/dropzone_spot';
 import ImageActions from 'actions/image';
+import imagePropTypes from 'prop_types/image';
 import ImagesActions from 'actions/images';
 import ImageStore from 'stores/image';
 
 @connectToStores
 export default class ImageForm extends Component {
   static propTypes = {
-    image: PropTypes.shape({
-      id: PropTypes.id,
-      caption: PropTypes.string,
-      file: PropTypes.object
-    })
+    image: PropTypes.shape(imagePropTypes)
   }
 
   static getStores(props) {

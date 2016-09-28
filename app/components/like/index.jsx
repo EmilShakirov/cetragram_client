@@ -1,37 +1,28 @@
 import React, { Component, PropTypes } from 'react';
-import connectToStores from 'alt-utils/lib/connectToStores';
+import AltContainer from 'alt-container';
 import { Badge, Glyphicon } from 'react-bootstrap';
+import { find } from 'lodash';
 import session from 'services/session';
 import classNames from 'classnames';
 import LikesActions from 'actions/likes';
-import LikesStore from 'stores/likes';
+import likePropTypes from 'prop_types/like';
 
-@connectToStores
 export default class Like extends Component {
   static propTypes = {
     imageId: PropTypes.number,
-    likes: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.id,
-        image_id: PropTypes.id,
-        userId: PropTypes.id
-      })
-    )
+    likes: PropTypes.arrayOf(PropTypes.shape(likePropTypes))
   }
 
-  static getStores(props) {
-    return [LikesStore];
-  }
+  currentUsersLike = () => {
+    const { likes, imageId } = this.props;
+    const { id: userId } = session.currentUser().user;
 
-  static getPropsFromStores(props) {
-    return {
-      ...LikesStore.getState()
-    };
+    return find(likes, { imageId, userId });
   }
 
   handleClick = () => {
     const { imageId } = this.props;
-    const like = this.targetLike();
+    const like = this.currentUsersLike();
 
     if (like) {
       LikesActions.destroy(like.id);
@@ -40,19 +31,12 @@ export default class Like extends Component {
     }
   }
 
-  targetLike = () => {
-    const { imageId, likes } = this.props;
-    const { id: userId } = session.currentUser().user;
-
-    return _.find(likes, { image_id: imageId, user_id: userId });
-  }
-
   likeClass = () => {
-    return classNames({ 'text-danger': this.targetLike() });
+    return classNames({ 'text-danger': this.currentUsersLike() });
   }
 
   render() {
-    const { imageId, likes } = this.props;
+    const { likes, imageId } = this.props;
 
     return (
       <Badge onClick={ this.handleClick }>
@@ -61,7 +45,7 @@ export default class Like extends Component {
           glyph="heart"
         />
         &nbsp;
-        { likes.filter(like => like.image_id == imageId).length }
+        { likes.filter(like => like.imageId == imageId).length }
       </Badge>
     );
   }

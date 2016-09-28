@@ -1,5 +1,6 @@
 import config from 'config';
 import requestAuth from 'lib/request-auth';
+import { camelizeKeys } from 'humps';
 
 export default class LikesSource {
   static urlRoot = `${config.apiPath}/likes`;

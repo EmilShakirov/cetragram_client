@@ -3,25 +3,22 @@ import {
   Col,
   Image,
   Panel,
-  Row,
   Thumbnail
 } from 'react-bootstrap';
 import { Link } from 'react-router';
+import { camelizeKeys } from 'humps';
 import { paths } from 'helpers/routes';
 import Like from 'components/like';
+import imagePropTypes from 'prop_types/image';
 import styles from './styles';
 
 export default class ImageItem extends Component {
   static propTypes = {
-    image: PropTypes.shape({
-      id: PropTypes.id,
-      caption: PropTypes.string,
-      link: PropTypes.string
-    })
+    image: PropTypes.shape(imagePropTypes)
   }
 
   render() {
-    const { caption, link, id: imageId } = this.props.image;
+    const { image: { caption, link, likes, id: imageId } } = this.props;
 
     return (
       <Col
@@ -40,8 +37,11 @@ export default class ImageItem extends Component {
           </Link>
           <br/>
           <p className={ styles.caption }>{ caption }</p>
-          <Col xs={ 3 } className={ `pull-right ${styles.like}` }>
-            <Like imageId={ imageId }/>
+          <Col
+            className={ `pull-right ${styles.like}` }
+            xs={ 3 }
+          >
+            <Like likes={ camelizeKeys(likes) } imageId={ imageId }/>
           </Col>
         </Thumbnail>
       </Col>
