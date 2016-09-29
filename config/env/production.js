@@ -1,6 +1,6 @@
 module.exports = {
-  target: 'http://cetragram.herokuapp.com',
-  apiPath: 'http://cetragram-api.herokuapp.com',
+  target: 'https://cetragram.herokuapp.com',
+  apiPath: 'https://cetragram-api.herokuapp.com',
   rootPath: '/',
   storageKey: 'user_session',
   session: {
