@@ -6,8 +6,8 @@ import {
   Thumbnail
 } from 'react-bootstrap';
 import { Link } from 'react-router';
-import { camelizeKeys } from 'humps';
 import { paths } from 'helpers/routes';
+import { camelizeKeys } from 'humps';
 import Like from 'components/like';
 import imagePropTypes from 'prop_types/image';
 import styles from './styles';

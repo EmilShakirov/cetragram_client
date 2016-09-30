@@ -8,6 +8,10 @@ export default class ApplicationActions {
   }
 
   closeModal(data = {}) {
+    const { callback } = data;
+
+    if (callback) { callback(); }
+
     return data;
   }
 }

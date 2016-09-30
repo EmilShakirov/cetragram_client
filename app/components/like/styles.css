@@ -1,0 +1,7 @@
+.badge {
+  cursor: pointer;
+}
+
+.badgeDisabled {
+  cursor: not-allowed;
+}

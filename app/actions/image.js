@@ -6,7 +6,7 @@ import imagesSource from 'sources/images';
 export default class ImageActions {
   getImage(imageId) {
     return (dispatch) => {
-      imagesSource.getImage(imageId).then(result => dispatch(result));
+      imagesSource.getImage(imageId).then(result => dispatch(result.image));
     };
   }
 
