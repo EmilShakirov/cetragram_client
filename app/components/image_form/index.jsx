@@ -8,6 +8,7 @@ import {
   Thumbnail,
   Well
 } from 'react-bootstrap';
+import classnames from 'classnames';
 import DropzoneSpot from 'components/dropzone_spot';
 import ImageActions from 'actions/image';
 import imagePropTypes from 'prop_types/image';
@@ -17,7 +18,8 @@ import ImageStore from 'stores/image';
 @connectToStores
 export default class ImageForm extends Component {
   static propTypes = {
-    image: PropTypes.shape(imagePropTypes)
+    image: PropTypes.shape(imagePropTypes),
+    isUploading: PropTypes.bool
   }
 
   static getStores(props) {
@@ -55,32 +57,32 @@ export default class ImageForm extends Component {
   }
 
   render() {
+    const { isUploading } = this.props;
+
     return (
-        <Col xs={ 6 } xsOffset={ 3 } >
-          <Well>
-            { this.renderDropzone() }
+      <Col xs={ 6 } xsOffset={ 3 } >
+        <Well>
+          { this.renderDropzone() }
 
-            <form onSubmit={ this.createImage }>
-              <FormGroup
-                controlId="caption"
-              >
-                <FormControl
-                  componentClass="textarea"
-                  placeholder="Enter your caption"
-                  onChange={ this.setCaption }
-                />
-              </FormGroup>
-              <Button
-                bsSize="large"
-                bsStyle="primary"
-                type="submit"
-              >
-                Upload
-              </Button>
-            </form>
-          </Well>
-        </Col>
-
-  );
+          <form onSubmit={  isUploading ? null : this.createImage }>
+            <FormGroup controlId="caption">
+              <FormControl
+                componentClass="textarea"
+                placeholder="Enter your caption"
+                onChange={ this.setCaption }
+              />
+            </FormGroup>
+            <Button
+              bsSize="large"
+              bsStyle="primary"
+              className={ classnames({ disabled: isUploading }) }
+              type="submit"
+            >
+              { isUploading ? 'Uploading your image...' : 'Upload' }
+            </Button>
+          </form>
+        </Well>
+      </Col>
+    );
   }
 }

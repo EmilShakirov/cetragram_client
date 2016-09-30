@@ -16,13 +16,13 @@ export default class ImagesStore {
     this.bindListeners({
       create: ImagesActions.CREATE,
       get: ImagesActions.GET,
-      giveLike: LikesActions.create,
-      unlike: LikesActions.destroy
+      giveLike: LikesActions.CREATE,
+      unlike: LikesActions.DESTROY
     });
   }
 
   create(image) {
-    this.images.push(image);
+    this.images[image.id] = image;
   }
 
   get(response) {

@@ -18,11 +18,17 @@ export default class ImagesActions {
 
   create(image) {
     return (dispatch) => {
+      this.setIsUploading();
+
       imagesSource.create(image).then(result => {
         dispatch(result.image);
 
         browserHistory.push(paths.images());
       });
     };
+  }
+
+  setIsUploading() {
+    return true;
   }
 }

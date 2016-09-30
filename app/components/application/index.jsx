@@ -6,7 +6,7 @@ import Modals from 'components/modals';
 import styles from './styles';
 
 export default class Application extends Component {
-  renderHeader() {
+  renderHeader = () => {
     if (session.loggedIn()) {
       return <Header/>;
     }
@@ -16,7 +16,7 @@ export default class Application extends Component {
     return (
       <div className={ styles.layout }>
         <main className={ styles.wrapper }>
-          { ::this.renderHeader() }
+          { this.renderHeader() }
           { this.props.children }
         </main>
         <Footer/>

@@ -13,12 +13,14 @@ export default class ImageStore {
 
   constructor() {
     this.reset();
+    this.isUploading = false;
 
     this.bindListeners({
       getImage: ImageActions.GET_IMAGE,
       setCaption: ImageActions.SET_CAPTION,
       setFile: ImageActions.SET_FILE,
-      reset: ImagesActions.CREATE
+      reset: ImagesActions.CREATE,
+      setIsUploading: ImagesActions.SET_IS_UPLOADING
     });
   }
 
@@ -34,7 +36,12 @@ export default class ImageStore {
     this.image.file = file;
   }
 
+  setIsUploading() {
+    this.isUploading = true;
+  }
+
   reset() {
     this.image = Object.assign({}, this.defaultProps);
+    this.isUploading = false;
   }
 }
