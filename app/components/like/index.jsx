@@ -31,7 +31,7 @@ export default class Like extends Component {
     const like = this.currentUsersLike();
 
     if (like) {
-      LikesActions.destroy(like.id);
+      LikesActions.destroy(like);
     } else {
       LikesActions.create(imageId);
     }

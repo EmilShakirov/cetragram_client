@@ -6,19 +6,19 @@ import likesSource from 'sources/likes';
 export default class LikesActions {
   create(imageId) {
     return (dispatch) => {
-      this.setLikeProcessing();
+      this.setLikeProcessing(imageId);
       likesSource.create(imageId).then(result => dispatch(result.like));
     };
   }
 
-  destroy(likeId) {
+  destroy(like) {
     return (dispatch) => {
-      this.setLikeProcessing();
-      likesSource.destroy(likeId).then(result => dispatch(result.like));
+      this.setLikeProcessing(like.imageId);
+      likesSource.destroy(like.id).then(result => dispatch(result.like));
     };
   }
 
-  setLikeProcessing() {
-    return true;
+  setLikeProcessing(imageId) {
+    return imageId;
   }
 }
