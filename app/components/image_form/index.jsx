@@ -42,6 +42,12 @@ export default class ImageForm extends Component {
     ImagesActions.create(this.props.image);
   }
 
+  isUploadingDisabled = () => {
+    const { isUploading, image } = this.props;
+
+    return isUploading || !image.file;
+  }
+
   renderDropzone = () => {
     const { file } = this.props.image;
 
@@ -52,19 +58,39 @@ export default class ImageForm extends Component {
     }
   }
 
+  uploadButtonText = () => {
+    const { isUploading, image } = this.props;
+    let text;
+
+    switch (true) {
+      case (!image.file):
+        text = 'Please upload image';
+
+        break;
+      case (isUploading):
+        text = 'Your image is being uploaded...';
+
+        break;
+      default:
+        text = 'Upload!';
+
+        break;
+    }
+
+    return text;
+  }
+
   setCaption = (event) => {
     ImageActions.setCaption(event.target.value);
   }
 
   render() {
-    const { isUploading } = this.props;
-
     return (
       <Col xs={ 6 } xsOffset={ 3 } >
         <Well>
           { this.renderDropzone() }
 
-          <form onSubmit={  isUploading ? null : this.createImage }>
+          <form onSubmit={  this.isUploadingDisabled() ? null : this.createImage }>
             <FormGroup controlId="caption">
               <FormControl
                 componentClass="textarea"
@@ -75,10 +101,10 @@ export default class ImageForm extends Component {
             <Button
               bsSize="large"
               bsStyle="primary"
-              className={ classnames({ disabled: isUploading }) }
+              className={ classnames({ disabled: this.isUploadingDisabled() }) }
               type="submit"
             >
-              { isUploading ? 'Uploading your image...' : 'Upload' }
+              { this.uploadButtonText() }
             </Button>
           </form>
         </Well>

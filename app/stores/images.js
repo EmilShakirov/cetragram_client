@@ -12,6 +12,7 @@ export default class ImagesStore {
 
   constructor() {
     this.images = {};
+    this.orderedIds = [];
 
     this.bindListeners({
       create: ImagesActions.CREATE,
@@ -26,9 +27,11 @@ export default class ImagesStore {
   }
 
   get(response) {
+    const { result: orderedIds } = response;
     const images = selectn("entities.images", response);
 
     this.images = images;
+    this.orderedIds = orderedIds;
   }
 
   giveLike(like) {

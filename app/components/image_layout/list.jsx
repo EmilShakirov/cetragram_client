@@ -4,19 +4,26 @@ import {
 } from 'react-bootstrap';
 import ImageItem from 'components/image_item';
 import imagePropTypes from 'prop_types/image';
-import { values } from 'lodash';
+import { map } from 'lodash';
 
 export default class ImageList extends Component {
   static propTypes = {
-    images: PropTypes.objectOf(PropTypes.shape(imagePropTypes))
+    images: PropTypes.objectOf(PropTypes.shape(imagePropTypes)),
+    orderedIds: PropTypes.arrayOf(PropTypes.number)
   }
 
   renderItems = () => {
-    const images = values(this.props.images);
-
-    return images.map(
+    return this.sortedImages().map(
       (image) => <ImageItem key={ image.id } image={ image }/>
     );
+  }
+
+  sortedImages = () => {
+    const { images, orderedIds } = this.props;
+
+    return map(orderedIds, (id) => {
+      return images[id];
+    });
   }
 
   render() {

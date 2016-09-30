@@ -5,7 +5,7 @@ export default class Footer extends Component {
   render() {
     return (
       <footer className={ styles.footer }>
-        <p className="footer-text">cetragram</p>
+        <p className="footer-text">cetragram — like instagram, but for poor people.</p>
       </footer>
     );
   }

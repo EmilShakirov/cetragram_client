@@ -14,7 +14,8 @@ import ImagesStore from 'stores/images';
 export default class ImageLayout extends Component {
   static propTypes = {
     images: PropTypes.objectOf(PropTypes.shape(imagePropTypes)),
-    isModalOpen: PropTypes.bool
+    isModalOpen: PropTypes.bool,
+    orderedIds: PropTypes.arrayOf(PropTypes.number)
   }
 
   static getStores(props) {
@@ -32,8 +33,10 @@ export default class ImageLayout extends Component {
   }
 
   renderList = (complete) => {
+    const { images, orderedIds } = this.props;
+
     return (
-      <ImageList images={ this.props.images } />
+      <ImageList images={ images } orderedIds={ orderedIds } />
     );
   }
 
