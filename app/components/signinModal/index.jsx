@@ -84,7 +84,7 @@ export default class SigninModal extends Component {
                 autoComplete="off"
                 name="password"
                 onChange={ this.setValue }
-                type="text"
+                type="password"
               />
             </FormGroup>
           </Modal.Body>

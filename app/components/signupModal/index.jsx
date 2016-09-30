@@ -85,7 +85,7 @@ export default class SignupModal extends Component {
           <Modal.Body>
             <FormGroup
               controlId="name"
-              validationState={ ::this.nameValidationState(this.props.user.name) }
+              validationState={ this.nameValidationState(this.props.user.name) }
             >
               <ControlLabel>Name</ControlLabel>
               <FormControl
@@ -96,7 +96,7 @@ export default class SignupModal extends Component {
             </FormGroup>
             <FormGroup
               controlId="email"
-              validationState={ ::this.validationState(this.props.user.email) }
+              validationState={ this.validationState(this.props.user.email) }
             >
               <ControlLabel>Email</ControlLabel>
               <FormControl
@@ -107,7 +107,7 @@ export default class SignupModal extends Component {
             </FormGroup>
             <FormGroup
               controlId="password"
-              validationState={ ::this.validationState(this.props.user.password) }
+              validationState={ this.validationState(this.props.user.password) }
             >
               <ControlLabel>Password</ControlLabel>
               <FormControl

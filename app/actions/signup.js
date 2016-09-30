@@ -9,11 +9,16 @@ export default class SignupActions {
     return { name, value };
   }
 
-  create(user) {
+  create(userObject) {
+    const user = userObject;
+
     return (dispatch) => {
       signupSource.create(user).then((result) => {
-        SessionActions.create(result);
-        dispatch(result);
+        const { user: responseUser } = result;
+
+        SessionActions.create(user);
+
+        dispatch(responseUser);
       });
     };
   }

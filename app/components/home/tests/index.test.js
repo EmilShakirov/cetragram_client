@@ -1,17 +1,12 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import Home from 'components/home';
+import ImageForm from 'components/image_form';
 
 describe('Home', () => {
   const homeComponent = mount(<Home/>);
 
-  it('renders title', () => {
-    expect(homeComponent.find('h1').text()).toEqual('cetragram');
-  });
-
-  it('renders description text', () => {
-    const innerText = 'Kick-start your new web application based on React and Flux technologies.';
-
-    expect(homeComponent.find('p').text()).toContain(innerText);
+  it('contains ImageForm component', () => {
+    expect(homeComponent.find(ImageForm).length).toEqual(1);
   });
 });

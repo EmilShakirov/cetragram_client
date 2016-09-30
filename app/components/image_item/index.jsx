@@ -14,11 +14,12 @@ import styles from './styles';
 
 export default class ImageItem extends Component {
   static propTypes = {
-    image: PropTypes.shape(imagePropTypes)
+    image: PropTypes.shape(imagePropTypes),
+    likeProcessing: PropTypes.bool
   }
 
   render() {
-    const { image: { caption, link, likes, id: imageId } } = this.props;
+    const { image: { caption, link, likes, likeProcessing, id: imageId } } = this.props;
 
     return (
       <Col
@@ -41,7 +42,11 @@ export default class ImageItem extends Component {
             className={ `pull-right ${styles.like}` }
             xs={ 3 }
           >
-            <Like likes={ camelizeKeys(likes) } imageId={ imageId }/>
+            <Like
+              imageId={ imageId }
+              likeProcessing={ likeProcessing }
+              likes={ camelizeKeys(likes) }
+            />
           </Col>
         </Thumbnail>
       </Col>

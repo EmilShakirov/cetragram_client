@@ -13,12 +13,14 @@ export default class ImagesStore {
   constructor() {
     this.images = {};
     this.orderedIds = [];
+    this.likeProcessing = false;
 
     this.bindListeners({
       create: ImagesActions.CREATE,
       get: ImagesActions.GET,
       giveLike: LikesActions.CREATE,
-      unlike: LikesActions.DESTROY
+      unlike: LikesActions.DESTROY,
+      setLikeProcessing: LikesActions.SET_LIKE_PROCESSING
     });
   }
 
@@ -38,6 +40,11 @@ export default class ImagesStore {
     const { image_id: imageId } = like;
 
     this.images[imageId].likes.push(...[like]);
+    this.likeProcessing = false;
+  }
+
+  setLikeProcessing() {
+    this.likeProcessing = true;
   }
 
   unlike(like) {

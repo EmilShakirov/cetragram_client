@@ -1,5 +1,6 @@
 import config from 'config';
 import { request } from 'lib/request';
+import { checkStatus, parseJSON } from 'lib/response';
 
 export default class SignupSource {
   static urlRoot = `${config.apiPath}/users`;
@@ -9,6 +10,10 @@ export default class SignupSource {
       method: 'POST',
       body: JSON.stringify(user)
     })
-    .then(result => result.json());
+    .then(checkStatus)
+    .then(parseJSON)
+    .catch((error) => {
+      console.log('request failed', error.response);
+    });
   }
 }

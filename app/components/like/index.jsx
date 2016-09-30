@@ -10,6 +10,7 @@ import likePropTypes from 'prop_types/like';
 export default class Like extends Component {
   static propTypes = {
     imageId: PropTypes.number,
+    likeProcessing: PropTypes.bool,
     likes: PropTypes.arrayOf(PropTypes.shape(likePropTypes))
   }
 
@@ -36,10 +37,10 @@ export default class Like extends Component {
   }
 
   render() {
-    const { likes, imageId } = this.props;
+    const { likes, likeProcessing, imageId } = this.props;
 
     return (
-      <Badge onClick={ this.handleClick }>
+      <Badge onClick={ likeProcessing ? null : this.handleClick }>
         <Glyphicon
           className={ this.likeClass() }
           glyph="heart"

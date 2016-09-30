@@ -15,7 +15,7 @@ module.exports = {
     'comma-style': [2, 'last'],
     'constructor-super': 2,
     'eol-last': 2,
-    'indent': [2, 2],
+    'indent': [2, 2, { "SwitchCase": 1 }],
     'key-spacing': [2, { 'beforeColon': false, 'afterColon': true }],
     'max-depth': [2, 4],
     'max-len': [2, 120, 4],
