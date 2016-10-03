@@ -28,6 +28,7 @@ export default class ImagesStore {
 
   create(image) {
     this.images[image.id] = image;
+    this.orderedIds.unshift(image.id);
   }
 
   get(response) {
