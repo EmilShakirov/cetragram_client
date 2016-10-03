@@ -2,9 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import {
   Row
 } from 'react-bootstrap';
+import { map } from 'lodash';
 import ImageItem from 'components/image_item';
 import imagePropTypes from 'prop_types/image';
-import { map } from 'lodash';
 
 export default class ImageList extends Component {
   static propTypes = {

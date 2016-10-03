@@ -21,19 +21,16 @@ export default class ImagesSource {
     .then(result => result.json());
   }
 
-  static get(images) {
+  static get(page) {
     return requestAuth(this.urlRoot, {
       method: 'GET'
-    })
+    }, { page })
     .then(result =>
-      result.json().then(json => responseNormalizer(json.images, 'images'))
+      result.json().then(json => {
+        const response = responseNormalizer(json.images, 'images');
+        response.pagination = json.meta.pagination;
+        return response;
+      })
     );
-  }
-
-  static getImage(imageId) {
-    return requestAuth(`${this.urlRoot}/${imageId}`, {
-      method: 'GET'
-    })
-    .then(result => result.json());
   }
 }

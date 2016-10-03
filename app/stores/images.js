@@ -13,6 +13,8 @@ export default class ImagesStore {
   constructor() {
     this.images = {};
     this.orderedIds = [];
+    this.page = 1;
+    this.total = NaN;
 
     this.bindListeners({
       create: ImagesActions.CREATE,
@@ -29,11 +31,12 @@ export default class ImagesStore {
   }
 
   get(response) {
-    const { result: orderedIds } = response;
-    const images = selectn("entities.images", response);
+    const { result: orderedIds, pagination: { page, total } } = response;
 
-    this.images = images;
-    this.orderedIds = orderedIds;
+    this.images = Object.assign({}, this.images, selectn("entities.images", response));
+    this.orderedIds.push(...orderedIds);
+    this.page = page;
+    this.total = total;
   }
 
   giveLike(like) {

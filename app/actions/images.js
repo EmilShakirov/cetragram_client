@@ -6,13 +6,9 @@ import { paths } from 'helpers/routes';
 
 @createActions(Alt)
 export default class ImagesActions {
-  get(images) {
+  get(page = 1) {
     return (dispatch) => {
-      if (!images.length) {
-        imagesSource.get().then(result => dispatch(result));
-      } else {
-        dispatch(images);
-      }
+      imagesSource.get(page).then(result => dispatch(result));
     };
   }
 
