@@ -2,21 +2,22 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { Modal } from 'react-bootstrap';
 import { Simulate } from 'react/lib/ReactTestUtils';
+import { inputHasErrorClass, inputHasSuccessClass, simulateInputChange } from 'lib/test_helpers';
 import SigninModal from 'components/signinModal';
 
 /* eslint-disable max-statements */
 describe('Signin Modal', () => {
   const state = { isModalOpen: true };
   const signinModalComponent = mount(<SigninModal />);
-  let inputEmail,
-    inputPassword,
+  let emailInput,
+    passwordInput,
     modalDialogContent;
 
   beforeAll(() => {
     signinModalComponent.setState(state);
     modalDialogContent = signinModalComponent.find(Modal).node._modal.getDialogElement();
-    inputPassword = modalDialogContent.querySelector('[name=password]');
-    inputEmail = modalDialogContent.querySelector('[name=email]');
+    passwordInput = modalDialogContent.querySelector('[name=password]');
+    emailInput = modalDialogContent.querySelector('[name=email]');
   });
 
   afterAll(() => {
@@ -33,53 +34,33 @@ describe('Signin Modal', () => {
 
   describe('when password is too short', () => {
     it('appears error class', () => {
-      Simulate.change(inputPassword, {
-        target: {
-          name: 'password',
-          value: 'short'
-        }
-      });
+      simulateInputChange(passwordInput, 'password', 'short');
 
-      expect(inputPassword.parentElement.classList.contains('has-error')).toEqual(true);
+      expect(inputHasErrorClass(passwordInput)).toEqual(true);
     });
   });
 
   describe('when password is valid', () => {
     it('appears success class', () => {
-      Simulate.change(inputPassword, {
-        target: {
-          name: 'password',
-          value: 'strongPassword'
-        }
-      });
+      simulateInputChange(passwordInput, 'password', 'strongPassword');
 
-      expect(inputPassword.parentElement.classList.contains('has-success')).toEqual(true);
+      expect(inputHasSuccessClass(passwordInput)).toEqual(true);
     });
   });
 
   describe('when email is too short', () => {
     it('appears error class', () => {
-      Simulate.change(inputEmail, {
-        target: {
-          name: 'email',
-          value: 'short'
-        }
-      });
+      simulateInputChange(emailInput, 'email', 'short');
 
-      expect(inputEmail.parentElement.classList.contains('has-error')).toEqual(true);
+      expect(inputHasErrorClass(emailInput)).toEqual(true);
     });
   });
 
   describe('when email is valid', () => {
     it('appears success class', () => {
-      Simulate.change(inputEmail, {
-        target: {
-          name: 'email',
-          value: 'email@example.com'
-        }
-      });
+      simulateInputChange(passwordInput, 'email', 'email@example.com');
 
-      expect(inputEmail.parentElement.classList.contains('has-success')).toEqual(true);
+      expect(inputHasSuccessClass(emailInput)).toEqual(true);
     });
   });
 });

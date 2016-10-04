@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { Modal } from 'react-bootstrap';
-import { Simulate } from 'react/lib/ReactTestUtils';
+import { inputHasErrorClass, inputHasSuccessClass, simulateInputChange } from 'lib/test_helpers';
 import SignupModal from 'components/signupModal';
 
 /* eslint-disable max-statements */
@@ -13,12 +13,6 @@ describe('Signup Modal', () => {
     nameInput,
     passwordConfirmationInput,
     passwordInput;
-
-  const simulateInputChange = (input, name, value) => {
-    Simulate.change(input, {
-      target: { name, value }
-    });
-  };
 
   beforeAll(() => {
     signupModalComponent.setState(state);
@@ -45,7 +39,7 @@ describe('Signup Modal', () => {
     it('appears error class', () => {
       simulateInputChange(nameInput, 'name', '');
 
-      expect(nameInput.parentElement.classList.contains('has-error')).toEqual(true);
+      expect(inputHasErrorClass(nameInput)).toEqual(true);
     });
   });
 
@@ -53,7 +47,7 @@ describe('Signup Modal', () => {
     it('appears success class', () => {
       simulateInputChange(nameInput, 'name', 'someName');
 
-      expect(nameInput.parentElement.classList.contains('has-success')).toEqual(true);
+      expect(inputHasSuccessClass(nameInput)).toEqual(true);
     });
   });
 
@@ -61,7 +55,7 @@ describe('Signup Modal', () => {
     it('appears error class', () => {
       simulateInputChange(emailInput, 'email', 'short');
 
-      expect(emailInput.parentElement.classList.contains('has-error')).toEqual(true);
+      expect(inputHasErrorClass(emailInput)).toEqual(true);
     });
   });
 
@@ -69,7 +63,7 @@ describe('Signup Modal', () => {
     it('appears success class', () => {
       simulateInputChange(emailInput, 'email', 'email@example.com');
 
-      expect(emailInput.parentElement.classList.contains('has-success')).toEqual(true);
+      expect(inputHasSuccessClass(emailInput)).toEqual(true);
     });
   });
 
@@ -77,7 +71,7 @@ describe('Signup Modal', () => {
     it('appears error class', () => {
       simulateInputChange(passwordInput, 'password', 'short');
 
-      expect(passwordInput.parentElement.classList.contains('has-error')).toEqual(true);
+      expect(inputHasErrorClass(passwordInput)).toEqual(true);
     });
   });
 
@@ -85,7 +79,7 @@ describe('Signup Modal', () => {
     it('appears success class', () => {
       simulateInputChange(passwordInput, 'password', 'strongPassword');
 
-      expect(passwordInput.parentElement.classList.contains('has-success')).toEqual(true);
+      expect(inputHasSuccessClass(passwordInput)).toEqual(true);
     });
   });
 
@@ -94,7 +88,7 @@ describe('Signup Modal', () => {
       simulateInputChange(passwordInput, 'password', 'superSecurePassword');
       simulateInputChange(passwordConfirmationInput, 'passwordConfirmation', 'superSecurePassword');
 
-      expect(passwordConfirmationInput.parentElement.classList.contains('has-success')).toEqual(true);
+      expect(inputHasSuccessClass(passwordConfirmationInput)).toEqual(true);
       expect(passwordInput.value).toEqual(passwordConfirmationInput.value);
     });
   });
