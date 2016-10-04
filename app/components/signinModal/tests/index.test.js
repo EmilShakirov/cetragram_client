@@ -1,18 +1,22 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { Modal } from 'react-bootstrap';
-import ReactTestUtils from 'react/lib/ReactTestUtils';
+import { Simulate } from 'react/lib/ReactTestUtils';
 import SigninModal from 'components/signinModal';
 
 /* eslint-disable max-statements */
 describe('Signin Modal', () => {
   const state = { isModalOpen: true };
   const signinModalComponent = mount(<SigninModal />);
-  let modalDialogContent;
+  let inputEmail,
+    inputPassword,
+    modalDialogContent;
 
   beforeAll(() => {
     signinModalComponent.setState(state);
     modalDialogContent = signinModalComponent.find(Modal).node._modal.getDialogElement();
+    inputPassword = modalDialogContent.querySelector('[name=password]');
+    inputEmail = modalDialogContent.querySelector('[name=email]');
   });
 
   afterAll(() => {
@@ -29,9 +33,7 @@ describe('Signin Modal', () => {
 
   describe('when password is too short', () => {
     it('appears error class', () => {
-      const inputPassword = modalDialogContent.querySelector('[name=password]');
-
-      ReactTestUtils.Simulate.change(inputPassword, {
+      Simulate.change(inputPassword, {
         target: {
           name: 'password',
           value: 'short'
@@ -44,9 +46,7 @@ describe('Signin Modal', () => {
 
   describe('when password is valid', () => {
     it('appears success class', () => {
-      const inputPassword = modalDialogContent.querySelector('[name=password]');
-
-      ReactTestUtils.Simulate.change(inputPassword, {
+      Simulate.change(inputPassword, {
         target: {
           name: 'password',
           value: 'strongPassword'
@@ -59,9 +59,7 @@ describe('Signin Modal', () => {
 
   describe('when email is too short', () => {
     it('appears error class', () => {
-      const inputEmail = modalDialogContent.querySelector('[name=email]');
-
-      ReactTestUtils.Simulate.change(inputEmail, {
+      Simulate.change(inputEmail, {
         target: {
           name: 'email',
           value: 'short'
@@ -74,9 +72,7 @@ describe('Signin Modal', () => {
 
   describe('when email is valid', () => {
     it('appears success class', () => {
-      const inputEmail = modalDialogContent.querySelector('[name=email]');
-
-      ReactTestUtils.Simulate.change(inputEmail, {
+      Simulate.change(inputEmail, {
         target: {
           name: 'email',
           value: 'email@example.com'
