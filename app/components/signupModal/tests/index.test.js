@@ -14,6 +14,12 @@ describe('Signup Modal', () => {
     passwordConfirmationInput,
     passwordInput;
 
+  const simulateInputChange = (input, name, value) => {
+    Simulate.change(input, {
+      target: { name, value }
+    });
+  };
+
   beforeAll(() => {
     signupModalComponent.setState(state);
     modalDialogContent = signupModalComponent.find(Modal).node._modal.getDialogElement();
@@ -37,12 +43,7 @@ describe('Signup Modal', () => {
 
   describe('when name is empty', () => {
     it('appears error class', () => {
-      Simulate.change(nameInput, {
-        target: {
-          name: 'name',
-          value: ''
-        }
-      });
+      simulateInputChange(nameInput, 'name', '');
 
       expect(nameInput.parentElement.classList.contains('has-error')).toEqual(true);
     });
@@ -50,12 +51,7 @@ describe('Signup Modal', () => {
 
   describe('when name is valid', () => {
     it('appears success class', () => {
-      Simulate.change(nameInput, {
-        target: {
-          name: 'name',
-          value: 'someName'
-        }
-      });
+      simulateInputChange(nameInput, 'name', 'someName');
 
       expect(nameInput.parentElement.classList.contains('has-success')).toEqual(true);
     });
@@ -63,12 +59,7 @@ describe('Signup Modal', () => {
 
   describe('when email is too short', () => {
     it('appears error class', () => {
-      Simulate.change(emailInput, {
-        target: {
-          name: 'email',
-          value: 'short'
-        }
-      });
+      simulateInputChange(emailInput, 'email', 'short');
 
       expect(emailInput.parentElement.classList.contains('has-error')).toEqual(true);
     });
@@ -76,12 +67,7 @@ describe('Signup Modal', () => {
 
   describe('when email is valid', () => {
     it('appears success class', () => {
-      Simulate.change(emailInput, {
-        target: {
-          name: 'email',
-          value: 'email@example.com'
-        }
-      });
+      simulateInputChange(emailInput, 'email', 'email@example.com');
 
       expect(emailInput.parentElement.classList.contains('has-success')).toEqual(true);
     });
@@ -89,12 +75,7 @@ describe('Signup Modal', () => {
 
   describe('when password is too short', () => {
     it('appears error class', () => {
-      Simulate.change(passwordInput, {
-        target: {
-          name: 'password',
-          value: 'short'
-        }
-      });
+      simulateInputChange(passwordInput, 'password', 'short');
 
       expect(passwordInput.parentElement.classList.contains('has-error')).toEqual(true);
     });
@@ -102,12 +83,7 @@ describe('Signup Modal', () => {
 
   describe('when password is valid', () => {
     it('appears success class', () => {
-      Simulate.change(passwordInput, {
-        target: {
-          name: 'password',
-          value: 'strongPassword'
-        }
-      });
+      simulateInputChange(passwordInput, 'password', 'strongPassword');
 
       expect(passwordInput.parentElement.classList.contains('has-success')).toEqual(true);
     });
@@ -115,19 +91,8 @@ describe('Signup Modal', () => {
 
   describe('when the passwords match', () => {
     it('appears success class', () => {
-      Simulate.change(passwordInput, {
-        target: {
-          name: 'password',
-          value: 'superSecurityPassword'
-        }
-      });
-
-      Simulate.change(passwordConfirmationInput, {
-        target: {
-          name: 'passwordConfirmation',
-          value: 'superSecurityPassword'
-        }
-      });
+      simulateInputChange(passwordInput, 'password', 'superSecurePassword');
+      simulateInputChange(passwordConfirmationInput, 'passwordConfirmation', 'superSecurePassword');
 
       expect(passwordConfirmationInput.parentElement.classList.contains('has-success')).toEqual(true);
       expect(passwordInput.value).toEqual(passwordConfirmationInput.value);
