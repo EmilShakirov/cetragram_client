@@ -5,10 +5,12 @@ import SignupActions from 'actions/signup';
 import ApplicationActions from 'actions/application';
 import SignupStore from 'stores/signup';
 import ApplicationStore from 'stores/application';
+import BaseLoader from 'components/base_loader';
 
 @connectToStores
 export default class SignupModal extends Component {
   static propTypes = {
+    isLoading: PropTypes.bool,
     isModalOpen: PropTypes.bool,
     user: PropTypes.shape({
       name: PropTypes.string,
@@ -38,7 +40,6 @@ export default class SignupModal extends Component {
 
     if (this.isValid()) {
       SignupActions.create(this.props.user);
-      ApplicationActions.closeModal();
     }
   }
 
@@ -80,64 +81,65 @@ export default class SignupModal extends Component {
         <Modal.Header closeButton>
           <h3 className="modal-title">Sign Up</h3>
         </Modal.Header>
+        <BaseLoader isLoading={ this.props.isLoading }>
+          <form onSubmit={ this.signUp }>
+            <Modal.Body>
+              <FormGroup
+                controlId="name"
+                validationState={ this.nameValidationState(this.props.user.name) }
+              >
+                <ControlLabel>Name</ControlLabel>
+                <FormControl
+                  type="text"
+                  name="name"
+                  onChange={ this.setValue }
+                />
+              </FormGroup>
+              <FormGroup
+                controlId="email"
+                validationState={ this.validationState(this.props.user.email) }
+              >
+                <ControlLabel>Email</ControlLabel>
+                <FormControl
+                  type="text"
+                  name="email"
+                  onChange={ this.setValue }
+                />
+              </FormGroup>
+              <FormGroup
+                controlId="password"
+                validationState={ this.validationState(this.props.user.password) }
+              >
+                <ControlLabel>Password</ControlLabel>
+                <FormControl
+                  type="password"
+                  name="password"
+                  onChange={ this.setValue }
+                />
+              </FormGroup>
+              <FormGroup
+                controlId="passwordConfirmation"
+                validationState={ this.passwordValidationState(this.props.user.passwordConfirmation) }
+              >
+                <ControlLabel>Password Confirmation</ControlLabel>
+                <FormControl
+                  type="password"
+                  name="passwordConfirmation"
+                  onChange={ this.setValue }
+                />
+              </FormGroup>
+            </Modal.Body>
 
-        <form onSubmit={ this.signUp }>
-          <Modal.Body>
-            <FormGroup
-              controlId="name"
-              validationState={ this.nameValidationState(this.props.user.name) }
-            >
-              <ControlLabel>Name</ControlLabel>
-              <FormControl
-                type="text"
-                name="name"
-                onChange={ this.setValue }
-              />
-            </FormGroup>
-            <FormGroup
-              controlId="email"
-              validationState={ this.validationState(this.props.user.email) }
-            >
-              <ControlLabel>Email</ControlLabel>
-              <FormControl
-                type="text"
-                name="email"
-                onChange={ this.setValue }
-              />
-            </FormGroup>
-            <FormGroup
-              controlId="password"
-              validationState={ this.validationState(this.props.user.password) }
-            >
-              <ControlLabel>Password</ControlLabel>
-              <FormControl
-                type="password"
-                name="password"
-                onChange={ this.setValue }
-              />
-            </FormGroup>
-            <FormGroup
-              controlId="passwordConfirmation"
-              validationState={ this.passwordValidationState(this.props.user.passwordConfirmation) }
-            >
-              <ControlLabel>Password Confirmation</ControlLabel>
-              <FormControl
-                type="password"
-                name="passwordConfirmation"
-                onChange={ this.setValue }
-              />
-            </FormGroup>
-          </Modal.Body>
-
-          <Modal.Footer>
-            <Button
-              bsStyle="primary"
-              type="submit"
-            >
-              Submit
-            </Button>
-          </Modal.Footer>
-        </form>
+            <Modal.Footer>
+              <Button
+                bsStyle="primary"
+                type="submit"
+              >
+                Submit
+              </Button>
+            </Modal.Footer>
+          </form>
+        </BaseLoader>
       </Modal>
     );
   }

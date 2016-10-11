@@ -24,7 +24,7 @@ export default class DropzoneSpot extends Component {
           onDrop={ this.handleFileDrop }
         >
           <div className={ styles.dropzoneText }>
-            Drop file here.
+            Drop file or click here to browse.
           </div>
         </Dropzone>
       </div>

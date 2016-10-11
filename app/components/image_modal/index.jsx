@@ -45,7 +45,9 @@ export default class ImageModal extends Component {
 
   render() {
     const { isModalOpen, images, params: { imageId } } = this.props;
+
     if (!images[imageId]) { return <div/>; }
+
     const { caption, link, likes, likeProcessing } = images[imageId];
 
     return (

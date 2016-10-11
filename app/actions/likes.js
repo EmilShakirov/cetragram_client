@@ -4,6 +4,10 @@ import likesSource from 'sources/likes';
 
 @createActions(Alt)
 export default class LikesActions {
+  constructor() {
+    this.generateActions('setLikeProcessing');
+  }
+
   create(imageId) {
     return (dispatch) => {
       this.setLikeProcessing(imageId);
@@ -16,9 +20,5 @@ export default class LikesActions {
       this.setLikeProcessing(like.imageId);
       likesSource.destroy(like.id).then(result => dispatch(result.like));
     };
-  }
-
-  setLikeProcessing(imageId) {
-    return imageId;
   }
 }

@@ -4,17 +4,13 @@ import imagesSource from 'sources/images';
 
 @createActions(Alt)
 export default class ImageActions {
+  constructor() {
+    this.generateActions('setCaption', 'setFile');
+  }
+
   getImage(imageId) {
     return (dispatch) => {
       imagesSource.getImage(imageId).then(result => dispatch(result.image));
     };
-  }
-
-  setCaption(caption) {
-    return caption;
-  }
-
-  setFile(file) {
-    return file;
   }
 }

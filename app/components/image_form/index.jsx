@@ -90,7 +90,10 @@ export default class ImageForm extends Component {
         <Well>
           { this.renderDropzone() }
 
-          <form onSubmit={  this.isUploadingDisabled() ? null : this.createImage }>
+          <form onSubmit={
+            this.isUploadingDisabled()
+            ? (event) => event.preventDefault()
+            : this.createImage }>
             <FormGroup controlId="caption">
               <FormControl
                 componentClass="textarea"

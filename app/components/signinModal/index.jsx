@@ -6,10 +6,12 @@ import ApplicationActions from 'actions/application';
 import SigninActions from 'actions/signin';
 import ApplicationStore from 'stores/application';
 import SigninStore from 'stores/signin';
+import BaseLoader from 'components/base_loader';
 
 @connectToStores
 export default class SigninModal extends Component {
   static propTypes = {
+    isLoading: PropTypes.bool,
     isModalOpen: PropTypes.bool,
     user: PropTypes.shape({
       email: PropTypes.string,
@@ -37,7 +39,6 @@ export default class SigninModal extends Component {
 
     if (this.isValid()) {
       SessionActions.create(this.props.user);
-      ApplicationActions.closeModal();
     }
   }
 
@@ -58,46 +59,49 @@ export default class SigninModal extends Component {
         show={ this.props.isModalOpen }
         onHide={ ApplicationActions.closeModal }
       >
-        <Modal.Header closeButton>
-          <h3 className="modal-title">Sign In</h3>
-        </Modal.Header>
+        <BaseLoader isLoading={ this.props.isLoading }>
+          <Modal.Header closeButton>
+            <h3 className="modal-title">Sign In</h3>
+          </Modal.Header>
 
-        <form onSubmit={ this.signIn }>
-          <Modal.Body>
-            <FormGroup
-              controlId="email"
-              validationState={ this.validationState(this.props.user.email) }
-            >
-              <ControlLabel>Email</ControlLabel>
-              <FormControl
-                type="text"
-                name="email"
-                onChange={ this.setValue }
-              />
-            </FormGroup>
-            <FormGroup
-              controlId="password"
-              validationState={ this.validationState(this.props.user.password) }
-            >
-              <ControlLabel>Password</ControlLabel>
-              <FormControl
-                autoComplete="off"
-                name="password"
-                onChange={ this.setValue }
-                type="password"
-              />
-            </FormGroup>
-          </Modal.Body>
+          <form onSubmit={ this.signIn }>
+            <Modal.Body>
+              <FormGroup
+                controlId="email"
+                validationState={ this.validationState(this.props.user.email) }
+              >
+                <ControlLabel>Email</ControlLabel>
+                <FormControl
+                  type="text"
+                  name="email"
+                  onChange={ this.setValue }
+                />
+              </FormGroup>
+              <FormGroup
+                controlId="password"
+                validationState={ this.validationState(this.props.user.password) }
+              >
+                <ControlLabel>Password</ControlLabel>
+                <FormControl
+                  autoComplete="off"
+                  name="password"
+                  onChange={ this.setValue }
+                  type="password"
+                />
+              </FormGroup>
+            </Modal.Body>
 
-          <Modal.Footer>
-            <Button
-              bsStyle="primary"
-              type="submit"
-            >
-              Submit
-            </Button>
-          </Modal.Footer>
-        </form>
+            <Modal.Footer>
+              <Button
+                bsStyle="primary"
+                type="submit"
+              >
+                Submit
+              </Button>
+            </Modal.Footer>
+
+          </form>
+        </BaseLoader>
       </Modal>
     );
   }
