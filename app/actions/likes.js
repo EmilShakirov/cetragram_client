@@ -11,14 +11,20 @@ export default class LikesActions {
   create(imageId) {
     return (dispatch) => {
       this.setLikeProcessing(imageId);
-      likesSource.create(imageId).then(result => dispatch(result.like));
+
+      setTimeout(() => {
+        likesSource.create(imageId).then(result => dispatch(result.like));
+      }, 500);
     };
   }
 
   destroy(like) {
     return (dispatch) => {
       this.setLikeProcessing(like.imageId);
-      likesSource.destroy(like.id).then(result => dispatch(result.like));
+
+      setTimeout(() => {
+        likesSource.destroy(like.id).then(result => dispatch(result.like));
+      }, 500);
     };
   }
 }

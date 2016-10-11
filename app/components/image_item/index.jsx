@@ -28,7 +28,7 @@ export default class ImageItem extends Component {
         xs= { 6 }
         className="thumb"
       >
-        <Thumbnail className="clearfix">
+        <Thumbnail className={ styles.imageThumbnail }>
           <Link to={ paths.image(imageId) }>
             <Image
               src={ link }

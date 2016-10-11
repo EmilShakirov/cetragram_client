@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import AltContainer from 'alt-container';
 import { Badge, Glyphicon } from 'react-bootstrap';
 import find from 'lodash/find';
+import Spinner from 'halogen/ClipLoader';
 import session from 'services/session';
 import classNames from 'classnames';
 import LikesActions from 'actions/likes';
@@ -41,17 +42,33 @@ export default class Like extends Component {
     return classNames({ 'text-danger': this.currentUsersLike() });
   }
 
-  render() {
+  renderLikes = () => {
     const { likes, likeProcessing, imageId } = this.props;
+
+    if (likeProcessing) {
+      return <Spinner color="#fff" size="14px"/>;
+    } else {
+      return (
+        <div>
+          <Glyphicon
+            className={ this.likeClass() }
+            glyph="heart"
+          />
+          &nbsp;
+          { likes.filter(like => like.imageId == imageId).length }
+        </div>
+      );
+    }
+
+  }
+
+  render() {
+    const { likeProcessing } = this.props;
 
     return (
       <Badge className={ this.badgeClass() } onClick={ likeProcessing ? null : this.handleClick }>
-        <Glyphicon
-          className={ this.likeClass() }
-          glyph="heart"
-        />
-        &nbsp;
-        { likes.filter(like => like.imageId == imageId).length }
+
+        { this.renderLikes() }
       </Badge>
     );
   }

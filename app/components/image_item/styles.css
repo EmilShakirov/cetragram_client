@@ -14,3 +14,7 @@
 .like {
   padding-bottom: 5px;
 }
+
+.imageThumbnail {
+  min-height: 275px;
+}
