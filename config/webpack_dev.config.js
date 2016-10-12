@@ -29,7 +29,13 @@ module.exports = {
       template: path.resolve(config.appDir, 'index.html')
     }),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify(config.env),
+        'OAUTHIO_KEY': JSON.stringify(config.oauthioKey)
+      }
+    })
   ],
   module: {
     loaders: [
