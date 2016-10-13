@@ -3,8 +3,8 @@ import connectToStores from 'alt-utils/lib/connectToStores';
 import { Button, Col, Grid, Row, Well } from 'react-bootstrap';
 import ApplicationActions from 'actions/application';
 import ApplicationStore from 'stores/application';
-import OauthActions from 'actions/oauth';
 import BaseLoader from 'components/base_loader';
+import SocialLoginButton from 'components/social_login_button';
 import styles from './styles';
 
 @connectToStores
@@ -21,10 +21,6 @@ export default class VisitorsHome extends Component {
     return {
       ...ApplicationStore.getState()
     };
-  }
-
-  socialAuth = (provider) => {
-    OauthActions.auth(provider);
   }
 
   signIn = () => {
@@ -64,23 +60,11 @@ export default class VisitorsHome extends Component {
               </Row>
 
               <br/>
-
+              <p>Or login using social networks:</p>
               <Row>
-                <Button
-                  bsSize= "large"
-                  bsStyle="default"
-                  onClick={ () => { this.socialAuth('facebook'); } }
-                >
-                  Facebook
-                </Button>
+                <SocialLoginButton provider="facebook"/>
                 &nbsp;
-                <Button
-                  bsSize= "large"
-                  bsStyle="default"
-                  onClick={ () => { this.socialAuth('twitter'); } }
-                >
-                  Twitter
-                </Button>
+                <SocialLoginButton provider="twitter"/>
               </Row>
             </Well>
           </BaseLoader>
