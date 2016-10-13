@@ -17,11 +17,14 @@ export default class SessionActions {
 
       sessionSource.create(user).then(result => {
         Storage.set(STORAGE_KEY, result);
-        ApplicationActions.setIsLoading(false);
         ApplicationActions.closeModal();
         dispatch(result);
         browserHistory.push(ROOT_PATH);
-      });
+      }).catch(error => {
+        console.log(error);
+      }).then(() => {
+        ApplicationActions.setIsLoading(false);
+      });;
     };
   }
 

@@ -16,16 +16,19 @@ export default class OauthActions {
     const provider = argProvider;
 
     ApplicationActions.setIsLoading(true);
-    return (dispatch) => {
 
+    return (dispatch) => {
       OauthSource.auth(provider).then(result => {
         result.me().then(data => {
           OauthSource.createUserFromOauth(data, provider)
           .then(result => {
             Storage.set(STORAGE_KEY, result);
-            ApplicationActions.setIsLoading(false);
             dispatch(result);
             browserHistory.push(paths.images());
+          }).catch(error => {
+            console.log(error);
+          }).then(() => {
+            ApplicationActions.setIsLoading(false);
           });
         });
       });
