@@ -23,7 +23,7 @@ export default class OauthSource {
       }
     };
 
-    return request(`${config.apiPath}/oauth_users`, {
+    return request(this.urlRoot, {
       method: 'POST',
       body: JSON.stringify(params)
     })
