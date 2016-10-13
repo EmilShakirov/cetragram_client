@@ -1,4 +1,5 @@
 import 'stylesheets/application';
+import 'font-awesome-webpack';
 import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, Redirect, browserHistory } from 'react-router';

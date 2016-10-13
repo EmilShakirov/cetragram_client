@@ -12,6 +12,7 @@ module.exports = Object.assign(
     appDir: 'app',
     distDir: 'dist',
     configDir: 'config',
-    [process.env.NODE_ENV]: true
+    [process.env.NODE_ENV]: true,
+    oauthioKey: process.env.OAUTHIO_KEY
   }
 );

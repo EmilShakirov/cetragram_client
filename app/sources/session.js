@@ -14,10 +14,7 @@ export default class SessionSource {
       body: JSON.stringify(params)
     })
     .then(checkStatus)
-    .then(parseJSON)
-    .catch((error) => {
-      console.log('request failed', error.response);
-    });
+    .then(parseJSON);
   }
 
   static delete(user) {

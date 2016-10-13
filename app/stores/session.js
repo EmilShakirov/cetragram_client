@@ -2,6 +2,7 @@ import Alt from 'alt_flux';
 import { createStore } from 'alt-utils/lib/decorators';
 import Storage from 'lib/storage';
 import SessionActions from 'actions/session';
+import OauthActions from 'actions/oauth';
 import config from 'config';
 
 const STORAGE_KEY = config.storageKey;
@@ -14,7 +15,7 @@ export default class SessionStore {
     this.currentUser = Storage.get(STORAGE_KEY) || {};
 
     this.bindListeners({
-      create: SessionActions.CREATE,
+      create: [SessionActions.CREATE, OauthActions.AUTH],
       delete: SessionActions.DELETE
     });
   }
