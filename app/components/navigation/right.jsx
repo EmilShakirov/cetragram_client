@@ -22,6 +22,10 @@ export default class NavigationRight extends Component {
     if (session.loggedIn()) {
       return (
         <Nav pullRight>
+          <NavItem>
+            { `Hello, ${session.currentUser().user.name}` }
+          </NavItem>
+
           <NavItem onClick={ this.signOut }>
             Sign out
           </NavItem>
