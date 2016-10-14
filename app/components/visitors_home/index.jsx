@@ -62,7 +62,7 @@ export default class VisitorsHome extends Component {
               <br/>
               <p>Or login using social networks:</p>
               <Row>
-                <SocialLoginButton provider="facebook"/>
+                <SocialLoginButton provider="google"/>
                 &nbsp;
                 <SocialLoginButton provider="twitter"/>
               </Row>
