@@ -1,8 +1,9 @@
 import Alt from 'alt_flux';
 import { createActions } from 'alt-utils/lib/decorators';
 import ApplicationActions from 'actions/application';
+import NotificationActions from 'actions/notification';
 import SessionActions from 'actions/session';
-import signupSource from 'sources/signup';
+import SignupSource from 'sources/signup';
 
 @createActions(Alt)
 export default class SignupActions {
@@ -15,14 +16,21 @@ export default class SignupActions {
 
     return (dispatch) => {
       ApplicationActions.setIsLoading(true);
-      signupSource.create(user).then((result) => {
+      SignupSource.create(user).then((result) => {
         const { user: responseUser } = result;
 
-        ApplicationActions.setIsLoading(false);
         SessionActions.create(user);
         ApplicationActions.closeModal();
         dispatch(responseUser);
-      });
+      }).catch(error => {
+        console.log(error);
+        NotificationActions.add({
+          message: 'This email has been already taken.',
+          level: 'error'
+        });
+      }).then(() => {
+        ApplicationActions.setIsLoading(false);
+      });;
     };
   }
 }

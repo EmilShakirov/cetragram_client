@@ -3,13 +3,12 @@ import session from 'services/session';
 import Footer from 'components/footer';
 import Header from 'components/header';
 import Modals from 'components/modals';
+import Notifications from 'components/notifications';
 import styles from './styles';
 
 export default class Application extends Component {
   renderHeader = () => {
-    if (session.loggedIn()) {
-      return <Header/>;
-    }
+    if (session.loggedIn()) return <Header/>;
   }
 
   render() {
@@ -20,6 +19,7 @@ export default class Application extends Component {
           { this.props.children }
         </main>
         <Footer/>
+        <Notifications/>
         <Modals/>
       </div>
     );

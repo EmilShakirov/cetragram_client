@@ -11,9 +11,6 @@ export default class SignupSource {
       body: JSON.stringify(user)
     })
     .then(checkStatus)
-    .then(parseJSON)
-    .catch((error) => {
-      console.log('request failed', error.response);
-    });
+    .then(parseJSON);
   }
 }

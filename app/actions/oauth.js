@@ -7,6 +7,7 @@ import Storage from 'lib/storage';
 import OauthSource from 'sources/oauth';
 import SessionActions from 'actions/session';
 import ApplicationActions from 'actions/application';
+import NotificationActions from 'actions/notification';
 
 const STORAGE_KEY = config.storageKey;
 
@@ -25,8 +26,16 @@ export default class OauthActions {
             Storage.set(STORAGE_KEY, result);
             dispatch(result);
             browserHistory.push(paths.images());
+            NotificationActions.add({
+              message: 'Welcome to the cetragram!',
+              level: 'success'
+            });
           }).catch(error => {
             console.log(error);
+            NotificationActions.add({
+              message: "Something gone wrong, please check your credentials",
+              level: 'error'
+            });
           }).then(() => {
             ApplicationActions.setIsLoading(false);
           });

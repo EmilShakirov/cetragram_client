@@ -45,6 +45,7 @@
     "react-dropzone": "^3.6.0",
     "react-fontawesome": "^1.2.0",
     "react-loader-advanced": "^1.4.1",
+    "react-notification-system": "^0.2.10",
     "react-router": "~2.8.1",
     "selectn": "^1.1.1",
     "whatwg-fetch": "~1.0.0"
