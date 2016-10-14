@@ -16,16 +16,11 @@ export default class ImageStore {
     this.isUploading = false;
 
     this.bindListeners({
-      getImage: ImageActions.GET_IMAGE,
       setCaption: ImageActions.SET_CAPTION,
       setFile: ImageActions.SET_FILE,
       reset: ImagesActions.CREATE,
       setIsUploading: ImagesActions.SET_IS_UPLOADING
     });
-  }
-
-  getImage(image) {
-    this.image = image;
   }
 
   setCaption(caption) {

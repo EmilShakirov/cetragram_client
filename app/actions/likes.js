@@ -14,7 +14,7 @@ export default class LikesActions {
 
       setTimeout(() => {
         likesSource.create(imageId).then(result => dispatch(result.like));
-      }, 500);
+      }, 150);
     };
   }
 
@@ -24,7 +24,7 @@ export default class LikesActions {
 
       setTimeout(() => {
         likesSource.destroy(like.id).then(result => dispatch(result.like));
-      }, 500);
+      }, 150);
     };
   }
 }

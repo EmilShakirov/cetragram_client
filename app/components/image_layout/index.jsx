@@ -38,6 +38,7 @@ export default class ImageLayout extends Component {
 
   isEdgeReached = () => {
     const { orderedIds, total } = this.props;
+
     return total == orderedIds.length;
   }
 

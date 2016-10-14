@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import {
   Row
 } from 'react-bootstrap';
-import { map } from 'lodash';
+import { chain } from 'lodash';
 import ImageItem from 'components/image_item';
 import imagePropTypes from 'prop_types/image';
 
@@ -21,9 +21,12 @@ export default class ImageList extends Component {
   sortedImages = () => {
     const { images, orderedIds } = this.props;
 
-    return map(orderedIds, (id) => {
-      return images[id];
-    });
+    return (
+      chain(orderedIds)
+        .map(id => images[id])
+        .uniqBy('id')
+        .value()
+    );
   }
 
   render() {

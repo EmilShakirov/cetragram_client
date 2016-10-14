@@ -4,7 +4,7 @@ import { createStore } from 'alt-utils/lib/decorators';
 import selectn from 'selectn';
 import ImagesActions from 'actions/images';
 import LikesActions from 'actions/likes';
-import { reject } from 'lodash';
+import { reject, uniq } from 'lodash';
 
 @createStore(Alt)
 export default class ImagesStore {
@@ -29,6 +29,7 @@ export default class ImagesStore {
   create(image) {
     this.images[image.id] = image;
     this.orderedIds.unshift(image.id);
+    this.total += 1;
   }
 
   get(response) {
@@ -36,6 +37,7 @@ export default class ImagesStore {
 
     this.images = Object.assign({}, this.images, selectn("entities.images", response));
     this.orderedIds.push(...orderedIds);
+    this.orderedIds = uniq(this.orderedIds);
     this.page = page;
     this.total = total;
   }

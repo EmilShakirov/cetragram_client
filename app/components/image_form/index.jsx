@@ -9,6 +9,7 @@ import {
   Well
 } from 'react-bootstrap';
 import classnames from 'classnames';
+import BaseLoader from 'components/base_loader';
 import DropzoneSpot from 'components/dropzone_spot';
 import ImageActions from 'actions/image';
 import imagePropTypes from 'prop_types/image';
@@ -86,32 +87,34 @@ export default class ImageForm extends Component {
 
   render() {
     return (
-      <Col xs={ 6 } xsOffset={ 3 } >
-        <Well>
-          { this.renderDropzone() }
+        <Col xs={ 6 } xsOffset={ 3 } >
+          <BaseLoader isLoading={ this.props.isUploading }>
+            <Well>
+              { this.renderDropzone() }
 
-          <form onSubmit={
-            this.isUploadingDisabled()
-            ? (event) => event.preventDefault()
-            : this.createImage }>
-            <FormGroup controlId="caption">
-              <FormControl
-                componentClass="textarea"
-                placeholder="Enter your caption"
-                onChange={ this.setCaption }
-              />
-            </FormGroup>
-            <Button
-              bsSize="large"
-              bsStyle="primary"
-              className={ classnames({ disabled: this.isUploadingDisabled() }) }
-              type="submit"
-            >
-              { this.uploadButtonText() }
-            </Button>
-          </form>
-        </Well>
-      </Col>
+              <form onSubmit={
+                this.isUploadingDisabled()
+                ? (event) => event.preventDefault()
+                : this.createImage }>
+                <FormGroup controlId="caption">
+                  <FormControl
+                    componentClass="textarea"
+                    placeholder="Enter your caption"
+                    onChange={ this.setCaption }
+                  />
+                </FormGroup>
+                <Button
+                  bsSize="large"
+                  bsStyle="primary"
+                  className={ classnames({ disabled: this.isUploadingDisabled() }) }
+                  type="submit"
+                >
+                  { this.uploadButtonText() }
+                </Button>
+              </form>
+            </Well>
+          </BaseLoader>
+        </Col>
     );
   }
 }

@@ -7,10 +7,4 @@ export default class ImageActions {
   constructor() {
     this.generateActions('setCaption', 'setFile');
   }
-
-  getImage(imageId) {
-    return (dispatch) => {
-      imagesSource.getImage(imageId).then(result => dispatch(result.image));
-    };
-  }
 }
