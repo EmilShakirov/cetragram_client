@@ -12,9 +12,7 @@ export default class LikesActions {
     return (dispatch) => {
       this.setLikeProcessing(imageId);
 
-      setTimeout(() => {
-        likesSource.create(imageId).then(result => dispatch(result.like));
-      }, 150);
+      likesSource.create(imageId).then(result => dispatch(result.like));
     };
   }
 
@@ -22,9 +20,7 @@ export default class LikesActions {
     return (dispatch) => {
       this.setLikeProcessing(like.imageId);
 
-      setTimeout(() => {
-        likesSource.destroy(like.id).then(result => dispatch(result.like));
-      }, 150);
+      likesSource.destroy(like.id).then(result => dispatch(result.like));
     };
   }
 }
