@@ -1,8 +1,8 @@
 import Alt from 'alt_flux';
-import { createActions } from 'alt-utils/lib/decorators';
 import { browserHistory } from 'react-router';
-import imagesSource from 'sources/images';
+import { createActions } from 'alt-utils/lib/decorators';
 import { paths } from 'helpers/routes';
+import imagesSource from 'sources/images';
 
 @createActions(Alt)
 export default class ImagesActions {
@@ -19,7 +19,8 @@ export default class ImagesActions {
   create(image) {
     return (dispatch) => {
       this.setIsUploading();
-      imagesSource.create(image).then(result => {
+      imagesSource.create(image)
+      .then(result => {
         dispatch(result.image);
         browserHistory.push(paths.images());
       });

@@ -5,6 +5,11 @@ import NotificationActions from 'actions/notification';
 import SessionActions from 'actions/session';
 import SignupSource from 'sources/signup';
 
+const CREATE_FAILURE_MESSAGE = {
+  message: 'This email has been already taken.',
+  level: 'error'
+};
+
 @createActions(Alt)
 export default class SignupActions {
   setValue(name, value) {
@@ -13,24 +18,24 @@ export default class SignupActions {
 
   create(userObject) {
     const user = userObject;
+    ApplicationActions.setIsLoading(true);
 
     return (dispatch) => {
-      ApplicationActions.setIsLoading(true);
-      SignupSource.create(user).then((result) => {
-        const { user: responseUser } = result;
-
-        SessionActions.create(user);
-        ApplicationActions.closeModal();
-        dispatch(responseUser);
-      }).catch(error => {
-        console.log(error);
-        NotificationActions.add({
-          message: 'This email has been already taken.',
-          level: 'error'
-        });
-      }).then(() => {
-        ApplicationActions.setIsLoading(false);
-      });;
+      SignupSource.create(user)
+      .then((user) => this._createSuccess(user, dispatch))
+      .catch(this._createFailure)
+      .then(() => ApplicationActions.setIsLoading(false));
     };
+  }
+
+  _createSuccess(user, dispatch) {
+    SessionActions.create(user);
+    ApplicationActions.closeModal();
+    dispatch(user);
+  }
+
+  _createFailure(error) {
+    console.log(error);
+    NotificationActions.add(CREATE_FAILURE_MESSAGE);
   }
 }
